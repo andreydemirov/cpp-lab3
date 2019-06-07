@@ -1,21 +1,46 @@
-﻿// cpp-lab3.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include "pch.h"
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
+using namespace std;
+
+
+int symbolsBefore(char arr[]) {
+	int before = 0;
+	for (int i = 0; i < strlen(arr); i++)
+	{
+		if (arr[i] != ':') {
+			before++;
+		}
+		else if (arr[i] == ':')
+			break;
+	}
+	if (before == strlen(arr))
+		return before = 0;
+	else
+		return before;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+int symbolsAfter(char arr[]) {
+	int after = 0;
+	bool turn = false;
+	for (int i = 0; i < strlen(arr); i++)
+	{
+		if (arr[i] == ':') {
+			turn = true;
+		}
+		else if (turn == true)
+			after++;
+	}
+	return after;
+}
+
+int main()
+{
+	char arr[31];
+	gets_s(arr);
+	cout << arr << " - " << strlen(arr) << "symb." << endl;
+
+	cout << "Symbols before : - " << symbolsBefore(arr) << endl;
+	cout << "Symbols after : - " << symbolsAfter(arr) << endl;
+}
